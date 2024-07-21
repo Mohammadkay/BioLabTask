@@ -1,0 +1,22 @@
+CREATE PROCEDURE `AddUser`(
+In P_Email varchar(100),
+In P_Name varchar(50)
+)
+BEGIN
+    INSERT INTO Users (Name, Email) VALUES (P_Name, P_Email);
+END
+
+CREATE  PROCEDURE `GetAllUsers`()
+BEGIN
+select * from users;
+END
+
+CREATE  PROCEDURE `GetUserByEmail`(IN P_Email varchar(100))
+BEGIN
+Select * from Users where email like P_Email;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RemoveUser`(In P_Id bigint)
+BEGIN
+Delete  FROM Users  WHERE Id=P_Id;
+END
