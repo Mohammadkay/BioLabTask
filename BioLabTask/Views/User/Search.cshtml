@@ -1,0 +1,46 @@
+﻿@model List<User>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="col-md-6">Users</th>
+            <th class="col-md-4" colspan="2">
+                 <form asp-action="Search" method="post">
+                <div class="input-group">
+                  <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter Email" />
+
+                    <button class="btn btn-primary">Search</button>
+                </div>
+                </form>
+            </th>
+            <th class="col-md-2 text-center">
+                 <a class="btn btn-success" href="@Url.Action("AddUser", "User")">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </th>
+        </tr>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td class="text-center">
+                    <form asp-action="RemoveUser" method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash fa-xl"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    
+    </tbody>
+</table>
